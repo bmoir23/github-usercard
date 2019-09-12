@@ -3,15 +3,7 @@
            https://api.github.com/users/<your name>
 */
 
-axios.get('https://api.github.com/users/bmoir23')
-.then(data => {
-  console.log('Successful!', data);
-  const cards = document.querySelector('.cards');
-  cards.appendChild(createCard(data.data));
-})
-.catch(err => {
-  console.log('Error:', err);
-})
+
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -68,3 +60,65 @@ const followersArray = [
   luishrd
   bigknell
 */
+
+// pull info
+axios.get('https://api.github.com/users/bmoir23')
+.then(data => {
+  console.log('Successful!', data);
+  const cards = document.querySelector('.cards');
+  cards.appendChild(createCard(data.data));
+})
+.catch(err => {
+  console.log('Error:', err);
+})
+
+// pull follower info
+
+axio.get('https://api.github.com/users/bmoir23/followers')
+.then(data =>{
+  console.log('That worked! Here is a list of your followers:', data.data);
+  const followersData = data.data;
+  followersData.forEach(followersData =>{
+    followersArray.push(followerData.login);
+  })
+
+followersArray.forEach(follower => {
+  axios.get('https://api.github.com/users/${follower}')
+  .then(data => {
+    console.log('Follower info: ' , data.data );
+    const cards2 = document.querySelector('.cards');
+    cards2.appendChild(createCard(data.data));
+  })
+
+  .catch(err => {
+    console.log('Could not retrieve follower info: ', err);
+  })
+})
+
+})
+
+.catch(err => {
+  console.log ('There was a problem retrieving your followers :' , err);
+})
+
+//  card component
+
+function createCard(data){
+
+// DOM 
+
+  const userCard = document.createElement('div');
+  const userImg = document.createElement('img');
+
+
+
+
+
+
+
+
+
+
+
+  return userCard;
+}
