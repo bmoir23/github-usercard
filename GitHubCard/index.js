@@ -109,16 +109,49 @@ function createCard(data){
 
   const userCard = document.createElement('div');
   const userImg = document.createElement('img');
+  const userInfo = document.createElement('div');
+  const userName = document.createElement('h3');
+  const displayName = document.createElement('p');
+  const userLocation = document.createElement('p');
+  const profile = document.createElement('p');
+  const userProfile = document.createElement('a');
+  const userFollowers = document.createElement('p');
+  const userFollowing = document.createElement('p');
+  const userBio = document.createElement('p');
 
+// classes
 
+userCard.classList.add('card');
+userInfo.classList.add('card-info');
+userName.classList.add('name');
+displayName.classList.add('username');
 
+// assign values
 
+userImg.src = data.avatar_url;
+userName.textContent = data.name;
+displayName.textContent = data.login;
+userLocation.textContent = `Location: ${data.location}`;
+userProfile.innerHTML = `Profile: <a href=${data.html_url}>${data.html_url}</a>`;
+userFollowers.textContent = `Followers: ${data.followers}`;
+userFollowing.textContent = `Following: ${data.following}`;
+userBio.textContent = `Bio: ${data.bio}`;
 
+// structure
 
-
-
+userCard.appendChild(userImg);
+userCard.appendChild(userInfo);
+userInfo.appendChild(userName);
+userInfo.appendChild(displayName);
+userInfo.appendChild(userLocation);
+userInfo.appendChild(profile);
+profile.appendChild(userProfile);
+userInfo.appendChild(userFollowers);
+userInfo.appendChild(userFollowing);
+userInfo.appendChild(userBio);
 
 
 
   return userCard;
 }
+
