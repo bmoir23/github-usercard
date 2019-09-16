@@ -74,16 +74,16 @@ axios.get('https://api.github.com/users/bmoir23')
 
 // pull follower info
 
-axio.get('https://api.github.com/users/bmoir23/followers')
+axios.get('https://api.github.com/users/bmoir23/followers')
 .then(data =>{
   console.log('That worked! Here is a list of your followers:', data.data);
   const followersData = data.data;
-  followersData.forEach(followersData =>{
+  followersData.forEach(followerData =>{
     followersArray.push(followerData.login);
   })
 
 followersArray.forEach(follower => {
-  axios.get('https://api.github.com/users/${follower}')
+  axios.get(`https://api.github.com/users/${follower}`)
   .then(data => {
     console.log('Follower info: ' , data.data );
     const cards2 = document.querySelector('.cards');
